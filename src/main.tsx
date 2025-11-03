@@ -1,14 +1,14 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
-import { Amplify } from 'aws-amplify';
-import outputs from '../amplify_outputs.json';
+// src/main.tsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { Amplify } from 'aws-amplify'
+import outputs from '../amplify_outputs.json'
+import Root from './Root'  // ← ここをAppからRootに変更
 
-Amplify.configure(outputs);
+Amplify.configure(outputs)
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <Root />
+  </React.StrictMode>,
 )
