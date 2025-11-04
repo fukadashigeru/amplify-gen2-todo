@@ -55,6 +55,13 @@ const schema = a.schema({
     allow.publicApiKey().to(['read']),
     allow.owner().to(['read','create','update','delete']), // 作成/更新/削除はログイン者
   ]),
+
+  Hello: a.model({
+    message: a.string(),
+  }).authorization(allow => [
+    allow.publicApiKey().to(['read']),
+    allow.owner().to(['read','create','update','delete']), // 作成/更新/削除はログイン者
+  ]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
