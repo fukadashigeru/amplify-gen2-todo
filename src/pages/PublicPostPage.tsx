@@ -12,10 +12,12 @@ export default function PublicPostPage() {
   const [body, setBody] = useState('')
   const [category, setCategory] = useState('')
 
+  // リアルタイム購読
   useEffect(() => {
-    const sub = client.models.PublicPost.observeQuery().subscribe(({ items }) => {
-      setItems(items)
-    })
+    const sub = client.models.PublicPost
+      // .observeQuery() // jwtで検索なので自分の投稿だけ見れる
+      .observeQuery({ authMode: 'apiKey' }) // ★ 署名をapiKeyに
+      .subscribe(({ items }) => setItems(items))
     return () => sub.unsubscribe()
   }, [])
 
