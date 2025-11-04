@@ -51,10 +51,9 @@ const schema = a.schema({
     body: a.string(),
     category: a.string(),
   }).authorization(allow => [
-    allow.authenticated().to(['read','create','update','delete']), // 認証済みは全ての操作可能
-    // allow.publicApiKey().to(['read']),   // 匿名はreadだけ
-    // allow.owner().to(['create','update','delete']), // 作成/更新/削除はログイン者
-    // allow.owner()
+    // allow.authenticated().to(['read','create','update','delete']), // 認証済みは全ての操作可能
+    allow.publicApiKey().to(['read']),
+    allow.owner().to(['read','create','update','delete']), // 作成/更新/削除はログイン者
   ]),
 });
 
