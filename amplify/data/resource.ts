@@ -49,7 +49,12 @@ const schema = a.schema({
   PublicPost: a.model({
     title: a.string(),
     body: a.string(),
-  }).authorization(allow => [ allow.publicApiKey() ]),
+    category: a.string(),
+  }).authorization(allow => [
+    // allow.authenticated().to(['read','create','update','delete']), // 認証済みは全ての操作可能
+    allow.publicApiKey().to(['read']),
+    allow.owner().to(['read','create','update','delete']), // 作成/更新/削除はログイン者
+  ]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
