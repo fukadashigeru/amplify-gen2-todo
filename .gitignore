@@ -26,3 +26,4 @@ dist-ssr
 # Amplify auto-generated files
 .amplify/
 amplify_outputs.json
+amplify_outputs*
